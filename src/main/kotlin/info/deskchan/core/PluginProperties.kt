@@ -18,7 +18,7 @@ class PluginProperties(private val proxyInterface: PluginProxyInterface) : Messa
     }
 
     private fun load_impl(clear: Boolean){
-        val configPath = proxyInterface.dataDirPath.resolve("config.properties")
+        val configPath = proxyInterface.dataDirPath().resolve("config.properties")
         val properties = Properties()
         try {
             val ip = FileInputStream(configPath)
@@ -52,7 +52,7 @@ class PluginProperties(private val proxyInterface: PluginProxyInterface) : Messa
     /** Saves properties to default location. **/
     fun save(){
         if (size == 0) return
-        val configPath = proxyInterface.dataDirPath.resolve("config.properties")
+        val configPath = proxyInterface.dataDirPath().resolve("config.properties")
         try {
             val properties = Properties()
             for ((key, value) in this)

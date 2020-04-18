@@ -10,13 +10,13 @@ abstract class GroovyPlugin : Script(), Plugin {
     private val cleanupHandlers = ArrayList<Runnable>()
 
     var pluginDirPath: Path? = null
-        get() = pluginProxy!!.pluginDirPath
+        get() = pluginProxy!!.pluginDirPath()
     var assetsDirPath: Path? = null
-        get() = pluginProxy!!.assetsDirPath
+        get() = pluginProxy!!.assetsDirPath()
     var rootDirPath: Path? = null
-        get() = pluginProxy!!.rootDirPath
+        get() = pluginProxy!!.rootDirPath()
     val dataDirPath: Path
-        get() = pluginProxy!!.dataDirPath
+        get() = pluginProxy!!.dataDirPath()
 
     val id: String
         get() = pluginProxy!!.getId()

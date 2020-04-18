@@ -196,7 +196,7 @@ class ScenarioPlugin : Plugin {
             compilerConfiguration.scriptBaseClass = "info.deskchan.groovy_support.Scenario"
             var path = Path(pathString)
             if (!path.isAbsolute)
-                path = pluginProxy.assetsDirPath.resolve("scenarios").resolve(pathString)
+                path = pluginProxy.assetsDirPath().resolve("scenarios").resolve(pathString)
             compilerConfiguration.setClasspath(path.parent.toString())
             val groovyShell = GroovyShell(compilerConfiguration)
             val scriptLines: MutableList<String>?

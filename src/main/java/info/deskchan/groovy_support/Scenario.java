@@ -56,19 +56,19 @@ public abstract class Scenario extends Script{
     }
 
     protected Path getDataDirPath() {
-        return pluginProxy.getDataDirPath();
+        return pluginProxy.dataDirPath();
     }
 
     protected Path getPluginDirPath() {
-        return pluginProxy.getPluginDirPath();
+        return pluginProxy.pluginDirPath();
     }
 
     protected Path getRootDirPath() {
-        return pluginProxy.getRootDirPath();
+        return pluginProxy.rootDirPath();
     }
 
     protected Path getAssetsDirPath() {
-        return pluginProxy.getAssetsDirPath();
+        return pluginProxy.assetsDirPath();
     }
 
     protected void log(Object text) {

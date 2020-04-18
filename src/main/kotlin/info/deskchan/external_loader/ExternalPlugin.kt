@@ -88,10 +88,10 @@ class ExternalPlugin(private val pluginFile: File) : Plugin {
                  mutableListOf(),
                  mutableMapOf(
                          "id" to pluginProxy.getId(),
-                         "dataDirPath"   to   pluginProxy.dataDirPath.absolutePath.toString(),
-                         "pluginDirPath" to pluginProxy.pluginDirPath.absolutePath.toString(),
-                         "assetsDirPath" to pluginProxy.assetsDirPath.absolutePath.toString(),
-                         "rootDirPath"   to   pluginProxy.rootDirPath.absolutePath.toString(),
+                         "dataDirPath"   to   pluginProxy.dataDirPath().absolutePath.toString(),
+                         "pluginDirPath" to pluginProxy.pluginDirPath().absolutePath.toString(),
+                         "assetsDirPath" to pluginProxy.assetsDirPath().absolutePath.toString(),
+                         "rootDirPath"   to   pluginProxy.rootDirPath().absolutePath.toString(),
                          "locale" to CoreInfo.getCoreProperties().getString("locale")
                  )
          ), wrapper)

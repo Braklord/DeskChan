@@ -15,7 +15,7 @@ public class Downloader {
     public static void initialize(PluginProxyInterface pluginProxy) {
         pluginProxy.getProperties().load();
         if (pluginProxy.getProperties().getString("default_download_path") == null) {
-            pluginProxy.getProperties().put("default_download_path", pluginProxy.getDataDirPath().toString() + "/Downloader");
+            pluginProxy.getProperties().put("default_download_path", pluginProxy.dataDirPath().toString() + "/Downloader");
             pluginProxy.getProperties().save();
         }
         

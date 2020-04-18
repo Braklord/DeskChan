@@ -784,7 +784,7 @@ public class App extends Application {
 		/* Open folder containing log file.  */
 		pluginProxy.addMessageListener("gui:open-log-file", (sender, tag, data) -> {
 			try {
-				Desktop.getDesktop().open(Main.getPluginProxy().getDataDirPath().getParentPath());
+				Desktop.getDesktop().open(Main.getPluginProxy().dataDirPath().getParentPath());
 			} catch (Exception e){
 				showThrowable(e);
 			}
@@ -1166,7 +1166,7 @@ public class App extends Application {
 
 	/** Load all fonts from 'assets/fonts'. **/
 	private void loadFonts() {
-		File[] fonts = Main.getPluginProxy().getAssetsDirPath().resolve("fonts").listFiles();
+		File[] fonts = Main.getPluginProxy().assetsDirPath().resolve("fonts").listFiles();
 		if (fonts != null) {
 			try {
 				for (File fontPath : fonts) {
@@ -1187,7 +1187,7 @@ public class App extends Application {
 		String stylefile = Main.getProperties().getString("interface.path-skin");
 
 		if (stylefile == null || !new File(stylefile).exists())
-			stylefile = Main.getPluginProxy().getAssetsDirPath().resolve("styles").resolve("main_blue.css").toString();
+			stylefile = Main.getPluginProxy().assetsDirPath().resolve("styles").resolve("main_blue.css").toString();
 
 		try {
 			return new File(stylefile).toURI().toURL().toString();

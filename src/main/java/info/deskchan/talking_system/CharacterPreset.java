@@ -199,7 +199,7 @@ public class CharacterPreset {
 	public static CharacterPreset getFromFileUnsafe(File path) {
 		try {
 			if (!path.isAbsolute())
-				path = Main.getPluginProxy().getAssetsDirPath().resolve("presets").resolve(path.getName());
+				path = Main.getPluginProxy().assetsDirPath().resolve("presets").resolve(path.getName());
 			BufferedReader in = new BufferedReader(
 					new InputStreamReader(new FileInputStream(path), "UTF-8")
 			);

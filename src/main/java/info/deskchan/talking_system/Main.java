@@ -673,7 +673,7 @@ public class Main implements Plugin {
 	}
 
 	public static Path getPresetsPath() {
-		return pluginProxy.getAssetsDirPath().resolve("presets/");
+		return pluginProxy.assetsDirPath().resolve("presets/");
 	}
 
 	@Override
@@ -687,12 +687,12 @@ public class Main implements Plugin {
 		return pluginProxy;
 	}
 
-	static Path getPhrasesDirPath(){ return getPluginProxy().getAssetsDirPath().resolve("phrases"); }
+	static Path getPhrasesDirPath(){ return getPluginProxy().assetsDirPath().resolve("phrases"); }
 
-	static Path getDialogLogsDirPath(){ return getPluginProxy().getAssetsDirPath().resolve("dialog_logs"); }
+	static Path getDialogLogsDirPath(){ return getPluginProxy().assetsDirPath().resolve("dialog_logs"); }
 
 	static Path getCharacterClassifierModelPath(){
-		return getPluginProxy().getAssetsDirPath().resolve("models").resolve("character_classifier.model");
+		return getPluginProxy().assetsDirPath().resolve("models").resolve("character_classifier.model");
 	}
 
 	static CharacterPreset getCurrentCharacter(){

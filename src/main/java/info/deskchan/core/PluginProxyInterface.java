@@ -1,23 +1,23 @@
-package info.deskchan.core
+package info.deskchan.core;
 
-interface PluginProxyInterface : MessageListener {
+public interface PluginProxyInterface extends MessageListener {
 
     /** Get name of plugin. **/
-    fun getId(): String
+    String getId();
 
     /** Unload plugin from program immediately. This method is usually called from core. **/
-    fun unload()
+    void unload();
 
     /** Send message through core.
      * @param message
      */
-    fun sendMessage(message: MessageData)
+    void sendMessage(MessageData message);
 
     /** Send message at tag through core.
      * @param tag Tag
      * @param data Any data that will be sent with message, can be null
      */
-    fun sendMessage(tag: String, data: Any?)
+    void sendMessage(String tag, Object data);
 
     /** Send message at tag through core. First listener will be called if receiver wants to response to your message.
      * Second listener will be called after all of receivers get your message and complete their work with it.
@@ -26,94 +26,94 @@ interface PluginProxyInterface : MessageListener {
      * @param responseListener Response to your message
      * @param returnListener Listener tat will be called after all of receivers get your message
      */
-    fun sendMessage(tag: String, data: Any?, responseListener: ResponseListener, returnListener: ResponseListener): Any
+    Object sendMessage(String tag, Object data, ResponseListener responseListener, ResponseListener returnListener);
 
     /** Send message at tag through core. Listener will be called if receiver wants to response to your message.
      * @param tag Tag
      * @param data Any data that will be sent with message, can be null
      * @param responseListener Response to your message
      */
-    fun sendMessage(tag: String, data: Any?, responseListener: ResponseListener): Any
+    Object sendMessage(String tag, Object data, ResponseListener responseListener);
 
     /** Add listener to tag. All messages from everywhere in program will be received by this listener. */
-    fun addMessageListener(tag: String, listener: MessageListener)
+    void addMessageListener(String tag, MessageListener listener);
 
     ///** Add typed listener to tag. All messages from everywhere in program will be received by this listener. */
     //fun <T> addTypedMessageListener(tag: String, listener: TypedMessageListener<T>)
 
     /** Remove listener to tag. */
-    fun removeMessageListener(tag: String, listener: MessageListener)
+    void removeMessageListener(String tag, MessageListener listener);
 
     ///** Remove typed listener to tag. */
     //fun <T> removeTypedMessageListener(tag: String, listener: TypedMessageListener<T>)
 
     /** Set alternative */
-    fun setAlternative(srcTag: String, dstTag: String, priority:Int)
+    void setAlternative(String srcTag, String dstTag, int priority);
 
     /** Delete alternative */
-    fun deleteAlternative(srcTag: String, dstTag: String)
+    void deleteAlternative(String srcTag, String drcTag);
 
     /** Call next alternative in the chain. */
-    fun callNextAlternative(sender: String, tag: String, currentAlternative: String, data: Any?)
+    void callNextAlternative(String sender, String tag, String currentAlternative, Object data);
 
     /** Check if message sender is asking for advice. */
-    fun isAskingAnswer(sender: String) : Boolean
+    boolean isAskingAnswer(String sender);
 
     /** Set timer.
      * @param delay Delay, ms
      * @param responseListener Function that will be called after delay
      * @return Id of timer  **/
-    fun setTimer(delay: Long, responseListener: ResponseListener): Int
+    int setTimer(long delay, ResponseListener responseListener);
 
     /** Set cycled timer.
      * @param delay Delay, ms
      * @param count Count of cycles, -1 to infinite
      * @param responseListener Function that will be called after delay
      * @return Id of timer  **/
-    fun setTimer(delay: Long, count: Int, responseListener: ResponseListener): Int
+    int setTimer(long delay, int count, ResponseListener responseListener);
 
     /** Cancel timer by id. **/
-    fun cancelTimer(id: Int)
+    void cancelTimer(int id);
 
     /** Properties of plugin **/
-    fun getProperties(): PluginProperties
+    PluginProperties getProperties();
 
     /** Set path to resource bundle that you want to be used by your plugin.
      * @param path Path to resources folder
      */
-    fun setResourceBundle(path: String)
+    void setResourceBundle(String path);
 
     /** Set config field of your plugin. */
-    fun setConfigField(key: String, value: Any)
+    void setConfigField(String key, Object value);
 
     /** Get config field of your plugin. */
-    fun getConfigField(key: String): Any?
+    Object getConfigField(String key);
 
     /** Get resource string from resource bundles. Resources will be searched not only in bundle that you specified
      * but also in main bundle. */
-    fun getString(key: String): String
+    String getString(String key);
 
     /** Use this to get path to 'DeskChan' directory. **/
-    val rootDirPath: Path
+    Path rootDirPath();
 
     /** Use this to get path where plugin should store temporary user data. **/
-    val dataDirPath: Path
+    Path dataDirPath();
 
     /** Use this to get path to 'assets' folder, where stored program assets. **/
-    val assetsDirPath: Path
+    Path assetsDirPath();
 
     /** Use this to get path to 'plugins/pluginId' folder, where stored plugin assets. **/
-    val pluginDirPath: Path
+    Path pluginDirPath();
 
     /** Log text to file and console. **/
-    fun log(text: String)
+    void log(String text);
 
     /** Log stack and text of error thrown to file and console. **/
-    fun log(e: Throwable)
+    void log(Throwable e);
 
     /** Log text to file and console.
      * @param text
      * @param level
      */
-    fun log(text: String, level: LoggerLevel)
+    void log(String text, LoggerLevel level);
 }

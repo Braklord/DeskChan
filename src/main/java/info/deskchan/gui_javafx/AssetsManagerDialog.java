@@ -51,7 +51,7 @@ class AssetsManagerDialog extends FilesManagerDialog {
 
 		type = assetsType;
 
-		folder = Main.getPluginProxy().getAssetsDirPath().resolve(assetsType);
+		folder = Main.getPluginProxy().assetsDirPath().resolve(assetsType);
 		bottom.getChildren().add(
 				new PluginOptionsControlItem.HyperlinkItem(
 						folder.getAbsolutePath(),
@@ -109,7 +109,7 @@ class AssetsManagerDialog extends FilesManagerDialog {
 
 		switch (type){
 			case "skins": files = Skin.getSkinList(); break;
-			default: files = getFilesList(Main.getPluginProxy().getAssetsDirPath().resolve(type)); break;
+			default: files = getFilesList(Main.getPluginProxy().assetsDirPath().resolve(type)); break;
 		}
 
 		for (String file : files) {

@@ -217,17 +217,21 @@ class PluginProxy (private val id:String, private val plugin: Plugin, private va
 
     fun getConfig() = config
 
-    override val rootDirPath: Path
-        get() = PluginManager.getRootDirPath()
+    override fun rootDirPath(): Path {
+        return PluginManager.getRootDirPath()
+    }
 
-    override val dataDirPath: Path
-        get() = PluginManager.getPluginDataDirPath(id)
+    override fun dataDirPath(): Path {
+        return PluginManager.getDefaultPluginDirPath(id)
+    }
 
-    override val pluginDirPath: Path
-        get() = PluginManager.getDefaultPluginDirPath(id)
+    override fun pluginDirPath(): Path {
+        return PluginManager.getDefaultPluginDirPath(id)
+    }
 
-    override val assetsDirPath: Path
-        get() = PluginManager.getAssetsDirPath()
+    override fun assetsDirPath(): Path {
+        return PluginManager.getAssetsDirPath()
+    }
 
     override fun log(text: String) {
         sendMessage("core-events:log", mapOf("message" to text))
