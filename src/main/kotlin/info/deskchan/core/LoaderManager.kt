@@ -19,7 +19,9 @@ object LoaderManager {
     }
 
     /** Automatically load all plugins from 'plugin' directory. **/
-    internal fun loadPlugins() {
+    @JvmStatic
+    //internal fun loadPlugins() {
+    fun loadPlugins() {
         var unloadedPlugins = scanPluginsDir()
 
         var loaderCount: Int
@@ -71,5 +73,4 @@ object LoaderManager {
 
     fun registerExtensions(vararg extensions: String) = registeredExtensions.addAll(extensions)
     fun registerExtensions(extensions: List<String>) = registerExtensions(*extensions.toTypedArray())
-
 }

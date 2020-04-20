@@ -80,7 +80,8 @@ dependencies {
 ext.appName = 'DeskChan'
 project.version = '0.3.5'
 
-mainClassName = 'info.deskchan.core.MainKt'
+//mainClassName = 'info.deskchan.core.MainKt'
+mainClassName = 'info.deskchan.core.Main'
 
 // A list of standard plugins that should be packed into jar files.
 ext.standardJarPlugins = [
