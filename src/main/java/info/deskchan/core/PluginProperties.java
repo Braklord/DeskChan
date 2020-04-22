@@ -9,7 +9,7 @@ import java.util.Set;
 import static java.lang.Double.parseDouble;
 
 public class PluginProperties extends MessageDataMap {
-    private final PluginProxyInterface proxyInterface;
+    private PluginProxyInterface proxyInterface;
 
     PluginProperties(PluginProxyInterface proxy) {
         proxyInterface  = proxy;
@@ -74,9 +74,11 @@ public class PluginProperties extends MessageDataMap {
     public void save() {
         if (size() == 0) return;
         Path configPath = proxyInterface.dataDirPath().resolve("config.properties");
+        System.err.println(configPath.toString());
         try {
             Properties properties = new Properties();
-            Set<Map.Entry<Object, Object>> property = properties.entrySet();
+            //Set<Map.Entry<Object, Object>> property = this.entrySet();
+            Set<Entry<String, Object>> property = this.entrySet();
             for (Map.Entry m: property) {
                 properties.put(m.getKey(), m.getValue().toString());
             }
@@ -88,4 +90,5 @@ public class PluginProperties extends MessageDataMap {
             proxyInterface.log(new IOException("Cannot save file: " + configPath, e));
         }
     }
+
 }
