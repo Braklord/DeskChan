@@ -49,6 +49,7 @@ class Main : Plugin, PluginLoader {
             }
         }
         val urls = jars.map { it.toURI().toURL() }.toTypedArray()
+        //System.err.println(jars.toString())
         val loader = URLClassLoader(urls, javaClass.classLoader)
         jars.forEach { loadPlugin(it, loader) }
     }

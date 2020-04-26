@@ -94,16 +94,16 @@ public interface PluginProxyInterface extends MessageListener {
     String getString(String key);
 
     /** Use this to get path to 'DeskChan' directory. **/
-    Path rootDirPath();
+    Path getRootDirPath();
 
     /** Use this to get path where plugin should store temporary user data. **/
-    Path dataDirPath();
+    Path getDataDirPath();
 
     /** Use this to get path to 'assets' folder, where stored program assets. **/
-    Path assetsDirPath();
+    Path getAssetsDirPath();
 
     /** Use this to get path to 'plugins/pluginId' folder, where stored plugin assets. **/
-    Path pluginDirPath();
+    Path getPluginDirPath();
 
     /** Log text to file and console. **/
     void log(String text);

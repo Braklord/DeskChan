@@ -15,7 +15,7 @@ public class Downloader {
     public static void initialize(PluginProxyInterface pluginProxy) {
         pluginProxy.getProperties().load();
         if (pluginProxy.getProperties().getString("default_download_path") == null) {
-            pluginProxy.getProperties().put("default_download_path", pluginProxy.dataDirPath().toString() + "/Downloader");
+            pluginProxy.getProperties().put("default_download_path", pluginProxy.getDataDirPath().resolve("downloader"));
             pluginProxy.getProperties().save();
         }
         
@@ -69,7 +69,7 @@ public class Downloader {
         pluginProxy.addMessageListener("core-utils:set-default-download-path", (sender, tag, data) -> {
                 try {
                     pluginProxy.getProperties().put("default_download_path", ((Map) data).get("path").toString());
-                    pluginProxy.getProperties().save();
+                    //pluginProxy.getProperties().save();
                 } catch (Exception e) {
                     pluginProxy.log(e);
                 }

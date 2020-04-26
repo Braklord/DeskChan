@@ -33,7 +33,7 @@ class ImageSetSkin implements Skin {
 		this.path = path;
 		skinName = Skin.getSkinsPath().relativize(path);
 
-		propertiesPath = Main.getPluginProxy().dataDirPath().resolve(
+		propertiesPath = Main.getPluginProxy().getDataDirPath().resolve(
 				"skin_" + skinName + ".properties"
 		);
 		try {

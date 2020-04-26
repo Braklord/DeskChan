@@ -90,7 +90,7 @@ ext.standardJarPlugins = [
 	'speech_command_system',
 	'chat_window',
 	'weather',
-		'notification_manager'
+	'notification_manager'
 ]
 
 def gitCommitCount = '[UNOFFICIAL]'

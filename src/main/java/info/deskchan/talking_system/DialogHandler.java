@@ -48,7 +48,9 @@ public class DialogHandler {
         speechExchanger = new SpeechExchanger(Main.getCurrentCharacter().character);
         speechExchanger.loadLogs(Main.getDialogLogsDirPath());
         try {
+            //speechExchanger.loadLog(new Path(DialogHandler.class.getResource("TestDialog.log").toURI()));
             speechExchanger.loadLog(new Path(DialogHandler.class.getResource("TestDialog.log").toURI()));
+            Main.log(DialogHandler.class.getResource("TestDialog.log").toString());
         } catch (Exception e){
             Main.log(e);
         }

@@ -11,8 +11,9 @@ import static java.lang.Double.parseDouble;
 public class PluginProperties extends MessageDataMap {
     private PluginProxyInterface proxyInterface;
 
-    PluginProperties(PluginProxyInterface proxy) {
-        proxyInterface  = proxy;
+    PluginProperties(PluginProxyInterface proxyInterface) {
+        super();
+        this.proxyInterface  = proxyInterface;
     }
 
     /** Loads properties from default location and overwrites current properties map. **/
@@ -26,9 +27,8 @@ public class PluginProperties extends MessageDataMap {
     }
 
     private void load_impl(boolean clear) {
-        //Set<String, Object> keys = new HashSet<String, Object>();
 
-        Path configPath = proxyInterface.dataDirPath().resolve("config.properties");
+        Path configPath = this.proxyInterface.getDataDirPath().resolve("config.properties");
         // To synchronize HashMap: Map m = Collections.synchronizedMap(new HashMap(...));
         Properties properties = new Properties();
         try {
@@ -44,50 +44,51 @@ public class PluginProperties extends MessageDataMap {
 
         if(clear) {
             // keysSet() returns a set containing keys of the specified map.
-            Set<Object> keys = properties.keySet();
+            Set<String> keys = this.keySet();
 
-            for (Object key: keys) {
-                if(!keys.contains(key)) {
-                    properties.remove(key);
+            for (String key: keys) {
+                if(!properties.keySet().contains(key)) {
+                    remove(key);
                 }
             }
         }
 
-        Set<Map.Entry<Object, Object>> property = properties.entrySet();
-
-        for(Map.Entry m: property) {
+        properties.forEach((key, value) -> {
+            Object obj = get(key);
             try {
-                if (m.getValue() instanceof Number) {
-                    properties.put(m.getKey().toString(), parseDouble(m.getValue().toString()));
-                } else if (m.getValue() instanceof Boolean) {
-                    properties.put(m.getKey().toString(), Boolean.valueOf(m.getValue().toString()));
+                if (obj instanceof Number) {
+                    put(key.toString(), parseDouble(value.toString()));
+                } else if (obj instanceof Boolean) {
+                    put(key.toString(), value.toString().toLowerCase().equals("true"));
                 } else {
-                    properties.put(m.getKey().toString(), m.getValue().toString());
+                    put(key.toString(), value.toString());
                 }
             } catch (Exception e) {
-                proxyInterface.log("Properties loaded");
+                put(key.toString(), value.toString());
             }
-        }
+        });
+        this.proxyInterface.log("Properties loaded");
     }
 
     /** Saves properties to default location. **/
     public void save() {
         if (size() == 0) return;
-        Path configPath = proxyInterface.dataDirPath().resolve("config.properties");
+        Path configPath = this.proxyInterface.getDataDirPath().resolve("config.properties");
         System.err.println(configPath.toString());
         try {
             Properties properties = new Properties();
-            //Set<Map.Entry<Object, Object>> property = this.entrySet();
-            Set<Entry<String, Object>> property = this.entrySet();
-            for (Map.Entry m: property) {
-                properties.put(m.getKey(), m.getValue().toString());
-            }
+
+            forEach((key, value) -> {
+                properties.put(key, value.toString());
+            });
+
             BufferedOutputStream ip = new BufferedOutputStream(new FileOutputStream(configPath));
-            properties.store(ip, proxyInterface.getId() + " config");
+            //OutputStream ip = new FileOutputStream(configPath);
+            properties.store(ip, this.proxyInterface.getId() + " config");
             ip.close();
 
         } catch (Exception e) {
-            proxyInterface.log(new IOException("Cannot save file: " + configPath, e));
+            this.proxyInterface.log(new IOException("Cannot save file: " + configPath, e));
         }
     }
 

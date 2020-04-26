@@ -24,7 +24,7 @@ public class Balloon extends MovablePane {
         Sprite sprite;
         String path = Main.getPluginProxy().getProperties().getString(pathKey);
         if (path == null || !new File(path).exists()){
-            path = Main.getPluginProxy().assetsDirPath().resolve("balloons").resolve("bubble.svg").toString();
+            path = Main.getPluginProxy().getAssetsDirPath().resolve("balloons").resolve("bubble.svg").toString();
             if (!new File(path).exists()){
                 return createDefaultBubble();
             }

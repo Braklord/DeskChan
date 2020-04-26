@@ -217,19 +217,19 @@ class PluginProxy (private val id:String, private val plugin: Plugin, private va
 
     fun getConfig() = config
 
-    override fun rootDirPath(): Path {
+    override fun getRootDirPath(): Path {
         return PluginManager.getRootDirPath()
     }
 
-    override fun dataDirPath(): Path {
+    override fun getDataDirPath(): Path {
+        return PluginManager.getPluginDataDirPath(id)
+    }
+
+    override fun getPluginDirPath(): Path {
         return PluginManager.getDefaultPluginDirPath(id)
     }
 
-    override fun pluginDirPath(): Path {
-        return PluginManager.getDefaultPluginDirPath(id)
-    }
-
-    override fun assetsDirPath(): Path {
+    override fun getAssetsDirPath(): Path {
         return PluginManager.getAssetsDirPath()
     }
 

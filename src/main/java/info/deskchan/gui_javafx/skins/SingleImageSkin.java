@@ -20,7 +20,7 @@ class SingleImageSkin implements Skin {
 	
 	SingleImageSkin(Path path) {
 		this.path = path;
-		propertiesPath = Main.getPluginProxy().dataDirPath().resolve(
+		propertiesPath = Main.getPluginProxy().getDataDirPath().resolve(
 				"skin_" + getName() + ".properties"
 		);
 		try {

@@ -136,7 +136,7 @@ public class Character extends MovablePane {
 
 	public void setSkin(Skin skin) {
 		if (skin == null) {
-			skin = Skin.load(Main.getPluginProxy().assetsDirPath().resolve("skins").resolve(DEFAULT_SKIN_NAME));
+			skin = Skin.load(Main.getPluginProxy().getAssetsDirPath().resolve("skins").resolve(DEFAULT_SKIN_NAME));
 			if (skin == null){
 				App.showNotification(Main.getString("error"), Main.getString("error.no-image"));
 				Main.getInstance().quit();
